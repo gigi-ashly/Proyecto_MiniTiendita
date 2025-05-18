@@ -20,7 +20,6 @@ public class Proyecto_MiniTiendita {
         Scanner sc = new Scanner(System.in);
         sc.useLocale(Locale.US);
 
-        //en ventas al ingresar cualquier palabra que no sea no, lo toma como que el cliente si quiere otro producto
         int opcion;
         double cajaAbierta = 0;
         double caja = 0;
@@ -404,6 +403,7 @@ public class Proyecto_MiniTiendita {
                             cajaAbierta = 0;
                             primerCierre = 1;
                             System.out.println("\n>> Deposito realizado. \n>> Caja ahora tiene: Lps. " + caja);
+                            System.out.println(">> Estado de cuenta en banco: "+banco);
                         } else {
                             System.out.println("! - Deposito invalido. No se cerro la caja, ingrese monto menor al 60%. - !");
                         }
