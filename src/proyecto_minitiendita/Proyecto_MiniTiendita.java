@@ -22,6 +22,7 @@ public class Proyecto_MiniTiendita {
 
         int opcion;
         double cajaAbierta = 0;
+        double cajaAbierta2 = 0;
         double caja = 0;
         double banco = 0;
 
@@ -62,6 +63,7 @@ public class Proyecto_MiniTiendita {
                 //Abrir Caja
                 case 1 -> {
                     cajaAbierta = 0;
+                  
 
                     totalVentas = 0;
                     totalCompras = 0;
@@ -89,14 +91,22 @@ public class Proyecto_MiniTiendita {
                             if (agregar > 0) {
                                 caja += agregar;
                                 cajaAbierta = 1;
-                                System.out.println("\n~ Dinero agregado. \n-> Total en caja: Lps. " + caja);
+                                System.out.println("\n~ Dinero agregado. \n-> Total en caja: Lps. " + String.format("%.2f", caja));
                             } else {
+                                cajaAbierta = 1;
                                 System.out.println("\n! - Cantidad invalida. - !");
                             }
                         } else {
+                            
+                            if(cajaAbierta2 == 0){
+                            cajaAbierta2 = 1;
                             cajaAbierta = 1;
-                            System.out.println(">> Caja abierta nuevamente.\n-> Total en caja: Lps. " + caja);
-                        }
+                            System.out.println(">> Caja abierta nuevamente.\n-> Total en caja: Lps. " + String.format("%.2f", caja));
+                            }else{
+                                cajaAbierta = 1;
+                                System.out.println("! - Caja ya ha sido abierta - !");
+                      }
+                    }
                     }
 }
 
@@ -131,10 +141,10 @@ public class Proyecto_MiniTiendita {
                                 + "\n    dicho producto) de cada producto y si hay suficiente producto en inventario, porque"
                                 + "\n    si no cumple lo pedido, se devolvera al menu principal.");
                         System.out.println("|------------------------------------------------||--------------------------------------|");
-                        System.out.println("|  [1] Azucar (Lps. 30/kg) -> Expcecion: Tipo C  ||   -> Azucar: " + azucar + " kg                 |");
-                        System.out.println("|  [2] Avena  (Lps. 25/kg) -> Excepcion: Tipo C  ||   -> Avena: " + avena + " kg                   |");
-                        System.out.println("|  [3] Trigo  (Lps. 32/kg) -> Excepcion: Tipo C  ||   -> Trigo: " + trigo + " kg                    |");
-                        System.out.println("|  [4] Maiz   (Lps. 20/kg) -> Excepcion: Tipo B  ||   -> Maiz: " + maiz + " kg                    |");
+                        System.out.println("|  [1] Azucar (Lps. 30/kg) -> Expcecion: Tipo C  ||   -> Azucar: " + String.format("%.2f", azucar) + " kg                 |");
+                        System.out.println("|  [2] Avena  (Lps. 25/kg) -> Excepcion: Tipo C  ||   -> Avena: " + String.format("%.2f", avena) + " kg                   |");
+                        System.out.println("|  [3] Trigo  (Lps. 32/kg) -> Excepcion: Tipo C  ||   -> Trigo: " + String.format("%.2f", trigo) + " kg                    |");
+                        System.out.println("|  [4] Maiz   (Lps. 20/kg) -> Excepcion: Tipo B  ||   -> Maiz: " + String.format("%.2f", maiz) + " kg                    |");
                         System.out.println("|------------------------------------------------||--------------------------------------|");
                         System.out.print("-> Codigo del producto: ");
                         int codigo = sc.nextInt();
@@ -215,10 +225,10 @@ public class Proyecto_MiniTiendita {
                     double totalFinal = subtotal - descuento + impuesto;
 
                     factura += "------------------------------\n";
-                    factura += "> Subtotal: " + subtotal + "\n";
-                    factura += "> Descuento: " + descuento + "\n";
-                    factura += "> Impuesto: " + impuesto + "\n";
-                    factura += ">> TOTAL: " + totalFinal + "\n";
+                    factura += "> Subtotal: " + String.format("%.2f", subtotal) + "\n";
+                    factura += "> Descuento: " + String.format("%.2f", descuento) + "\n";
+                    factura += "> Impuesto: " + String.format("%.2f", impuesto) + "\n";
+                    factura += ">> TOTAL: " + String.format("%.2f", totalFinal) + "\n";
                     factura += "------------------------------\n";
 
                     System.out.println(factura);
@@ -236,11 +246,11 @@ public class Proyecto_MiniTiendita {
                     System.out.println("|--------------------------------------|");
                     System.out.println("       >> ESTADO DEL INVENTARIO <<");
                     System.out.println("|--------------------------------------|");
-                    System.out.println("|   -> Azucar: " + azucar + " kg                 |");
-                    System.out.println("|   -> Avena: " + avena + " kg                   |");
-                    System.out.println("|   -> Trigo: " + trigo + " kg                   |");
-                    System.out.println("|   -> Maiz: " + maiz + " kg                    |");
-                    System.out.println("|   -> Caja: Lps. " + caja + "                |");
+                    System.out.println("|   -> Azucar: " + String.format("%.2f", azucar) + " kg                 |");
+                    System.out.println("|   -> Avena: " + String.format("%.2f", avena) + " kg                   |");
+                    System.out.println("|   -> Trigo: " + String.format("%.2f", trigo) + " kg                   |");
+                    System.out.println("|   -> Maiz: " + String.format("%.2f", maiz) + " kg                    |");
+                    System.out.println("|   -> Caja: Lps. " + String.format("%.2f", caja)+ "                |");
                 }
 
                 case 3 -> {
@@ -273,7 +283,7 @@ public class Proyecto_MiniTiendita {
                     if ((tipoProveedor.equals("A") && (codigo == 1 || codigo == 4)) || (tipoProveedor.equals("B") && (codigo == 2 || codigo == 3)) || (tipoProveedor.equals("C") && codigo == 2)|| (tipoProveedor.equals("B") && codigo == 2)) {
 
                         double precio = 0;
-                        String nombre = "";
+                        String nombre = " ";
 
                         if (codigo == 1) {
                             precio = 25;
@@ -297,7 +307,7 @@ public class Proyecto_MiniTiendita {
                             nombre = "Maiz";
                         }
                         
-                        System.out.println("\n>> Tomar en cuenta dinero en caja: "+caja+"");
+                        System.out.println("\n>> Tomar en cuenta dinero en caja: "+String.format("%.2f", caja)+"");
                         System.out.print("-> Cuantos kg desea comprar?: ");
                         double kg = sc.nextDouble();
                         double total = precio * kg;
@@ -327,11 +337,12 @@ public class Proyecto_MiniTiendita {
                             System.out.println("|--------------------------------------|");
                             System.out.println("       >> ESTADO DEL INVENTARIO <<");
                             System.out.println("|--------------------------------------|");
-                            System.out.println("|   -> Azucar: " + azucar + " kg                 |");
-                            System.out.println("|   -> Avena: " + avena + " kg                   |");
-                            System.out.println("|   -> Trigo: " + trigo + " kg                   |");
-                            System.out.println("|   -> Maiz: " + maiz + " kg                    |");
-                            System.out.println("|   -> Caja: Lps. " + caja+"                |");
+                            System.out.println("|   -> Azucar: " + String.format("%.2f", azucar) + " kg                 |");
+                            System.out.println("|   -> Avena: " + String.format("%.2f", avena) + " kg                   |");
+                            System.out.println("|   -> Trigo: " + String.format("%.2f", trigo) + " kg                   |");
+                            System.out.println("|   -> Maiz: " + String.format("%.2f", maiz) + " kg                    |");
+                            System.out.println("|   -> Caja: Lps. " + String.format("%.2f", caja)+ "                |");
+
                         } else {
                             System.out.println("! - No se puede pagar compra. - !");
                         }
@@ -349,23 +360,23 @@ public class Proyecto_MiniTiendita {
                         System.out.println("! - Debe abrir la caja primero. - !");
                         break;
                     }
-                    System.out.println(">> Caja actual: Lps. " + caja);
-                    System.out.println(">> Total ventas: " + totalVentas + " por Lps. " + volumenVentas);
-                    System.out.println(">> Total compras: " + totalCompras + " por Lps. " + volumenCompras);
-                    System.out.println(">> Ganancia neta: Lps. " + gananciaTotal);
+                    System.out.println(">> Caja actual: Lps. " +  String.format("%.2f", caja));
+                    System.out.println(">> Total ventas: " + totalVentas + " por Lps. " +  String.format("%.2f",volumenVentas));
+                    System.out.println(">> Total compras: " + totalCompras + " por Lps. " +  String.format("%.2f", volumenCompras));
+                    System.out.println(">> Ganancia neta: Lps. " +  String.format("%.2f", gananciaTotal));
                     if (totalCompras > 0) {
-                        System.out.println(">> Valor medio de compra: Lps. " + (volumenCompras / totalCompras));
+                        System.out.println(">> Valor medio de compra: Lps. " +  String.format("%.2f",volumenCompras / totalCompras));
                     }
                     if (totalVentas > 0) {
-                        System.out.println(">> Valor medio de venta: Lps. " + (volumenVentas / totalVentas));
+                        System.out.println(">> Valor medio de venta: Lps. " + String.format("%.2f",volumenVentas / totalVentas));
                     }
-                    System.out.println(">> Compra mas costosa: Lps. " + compraMayor);
-                    System.out.println(">> Venta mas rentable: Lps. " + ventaMayorGanancia);
-                    System.out.println(">> Estado de cuenta en banco: "+banco);
+                    System.out.println(">> Compra mas costosa: Lps. " + String.format("%.2f", compraMayor));
+                    System.out.println(">> Venta mas rentable: Lps. " + String.format("%.2f", ventaMayorGanancia));
+                    System.out.println(">> Estado de cuenta en banco: "+ String.format("%.2f", banco));
 
-                    double mayor = azucarVendida;
+                    double mayor = 0;
                     productoEstrella = "Ninguno ha sido vendido";
-                    if (azucarVendida >= mayor) {
+                    if (azucarVendida > mayor) {
                         mayor = azucarVendida;
                         productoEstrella = "Azucar";
                     }
@@ -392,7 +403,7 @@ public class Proyecto_MiniTiendita {
                     if (cajaAbierta == 0) {
                         System.out.println("! - La caja ya esta cerrada. - !");
                     } else {
-                        System.out.println(">> Cierre de caja.\n>> Total acumulado: Lps. " + caja);
+                        System.out.println(">> Cierre de caja.\n>> Total acumulado: Lps. " + String.format("%.2f", caja));
                         System.out.print("-> Cuanto desea depositar al banco? (Max puede ingresar 60% que hay en caja): ");
                         double deposito = sc.nextDouble();
                         double maxDeposito = caja * 0.60;
@@ -402,8 +413,8 @@ public class Proyecto_MiniTiendita {
                             caja -= deposito;
                             cajaAbierta = 0;
                             primerCierre = 1;
-                            System.out.println("\n>> Deposito realizado. \n>> Caja ahora tiene: Lps. " + caja);
-                            System.out.println(">> Estado de cuenta en banco: "+banco);
+                            System.out.println("\n>> Deposito realizado. \n>> Caja ahora tiene: Lps. " + String.format("%.2f", caja));
+                            System.out.println(">> Estado de cuenta en banco: "+ String.format("%.2f", banco));
                         } else {
                             System.out.println("! - Deposito invalido. No se cerro la caja, ingrese monto menor al 60%. - !");
                         }
